@@ -1,11 +1,12 @@
-# fly.toml file generated for broken-wave-4500 on 2022-12-12T11:52:19+01:00
+# fly.toml file generated for broken-leaf-1635 on 2022-12-13T00:21:05+01:00
 
-app = "broken-wave-4500"
+app = "broken-leaf-1635"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
 [env]
+  PORT = "8080"
 
 [experimental]
   allowed_public_ports = []
@@ -13,7 +14,7 @@ processes = []
 
 [[services]]
   http_checks = []
-  internal_port = 22
+  internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
