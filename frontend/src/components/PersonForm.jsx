@@ -5,11 +5,11 @@ function PersonForm({handleNoteChange,handleNumberChange,addPerson,newName,newNu
   return (
     <form onSubmit={addPerson}>
     <div>
-      name: <input value={newName} required onChange={handleNoteChange} />
+      name: <input type="text" value={newName} required onChange={handleNoteChange} />
     </div>
     <div>
-      number:{" "}
-      <input value={newNumber} required onChange={handleNumberChange} />
+      Phonenumber:{" "}
+      <input type="tel" value={newNumber} required onChange={handleNumberChange} />
     </div>
     <div>
       <button type="submit">add</button>
