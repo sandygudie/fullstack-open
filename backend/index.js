@@ -1,5 +1,4 @@
 require("dotenv").config();
-const http = require("http");
 const express = require("express");
 const cors = require("cors");
 
@@ -57,7 +56,7 @@ app.post("/api/persons", (request, response,next) => {
 
 app.delete("/api/persons/:id", (request, response, next) => {
   Person.findByIdAndRemove(request.params.id)
-    .then((result) => {
+    .then(() => {
       response.status(204).end();
     })
     .catch((error) => next(error));
@@ -76,7 +75,7 @@ app.put("/api/persons/:id", (request, response, next) => {
     number: body.number,
   };
 
-  Person.findByIdAndUpdate(request.params.id, person, { new: true, runValidators: true, context: 'query'})
+  Person.findByIdAndUpdate(request.params.id, person, { new: true, runValidators: true, context: "query" })
     .then((updatedPerson) => {
       response.json(updatedPerson);
     })
@@ -86,7 +85,7 @@ app.put("/api/persons/:id", (request, response, next) => {
 app.get("/api/persons/:id", (request, response,next) => {
   Person.findById(request.params.id)
     .then((person) => {
-      if (note) {
+      if (person) {
         response.json(person);
       } else {
         response.status(404).end();
@@ -103,12 +102,12 @@ const unknownEndpoint = (request, response) => {
 app.use(unknownEndpoint);
 
 const errorHandler = (error, request, response, next) => {
-  if (error.name === 'CastError') {
-    return response.status(400).send({ error: 'malformatted id' })
-  } else if (error.name === 'ValidationError') {
-    return response.status(400).json({ error: error.message })
+  if (error.name === "CastError") {
+    return response.status(400).send({ error: "malformatted id" });
+  } else if (error.name === "ValidationError") {
+    return response.status(400).json({ error: error.message });
   }
-  next(error)
+  next(error);
 };
 
 // this has to be the last loaded middleware.
