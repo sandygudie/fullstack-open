@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 
 const personSchema = new mongoose.Schema({
@@ -8,15 +7,19 @@ const personSchema = new mongoose.Schema({
     required: true,
   },
   number: {
-    type:String,
+    type: String,
     minLength: 11,
     validate: {
-      validator: function(v) {
+      validator: function (v) {
         return /\d{3}-\d{8}/.test(v);
       },
-      message: props => `${props.value} is not a valid phone number!`
+      message: (props) => `${props.value} is not a valid phone number!`,
     },
-    required: [true, "User phone number required"]
+    required: [true, "User phone number required"],
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
   },
 });
 
