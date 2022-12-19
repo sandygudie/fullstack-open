@@ -23,14 +23,15 @@ mongoose
 
 app.use(cors());
 app.use(express.json());
+
 app.use(middleware.requestLogger);
 
-app.use("/api/persons", personsRouter);
-app.use("/api/users", usersRouter);
-
 //...
-
+app.use(middleware.getTokenFrom);
+app.use("/api/users", usersRouter);
 app.use("/api/login", loginRouter);
+app.use("/api/persons", middleware.userExtractor, personsRouter);
+
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 

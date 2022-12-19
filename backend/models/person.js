@@ -17,6 +17,7 @@ const personSchema = new mongoose.Schema({
     },
     required: [true, "User phone number required"],
   },
+  date: Date,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

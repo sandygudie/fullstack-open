@@ -1,9 +1,17 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  username: String,
+  username: {
+    type: String,
+    minLength: 5,
+    required: true,
+  },
   name: String,
-  passwordHash: String,
+  passwordHash: {
+    type: String,
+    minLength: 5,
+    required: true,
+  },
   phonebook: [
     {
       type: mongoose.Schema.Types.ObjectId,

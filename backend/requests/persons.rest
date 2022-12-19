@@ -1,0 +1,23 @@
+GET http://localhost:8080/api/persons
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbmR5VXNlciIsImlkIjoiNjNhMDMyOGZjMmMzMDBhNzYwNjM2Y2Q1IiwiaWF0IjoxNjcxNDQ1MDkwLCJleHAiOjE2NzE0NDg2OTB9.QWRAPV6GTPHVcngsVW-9K4LkqZ6M_Fm_FtUrisGk5yc
+
+
+
+###
+POST http://localhost:8080/api/persons/ HTTP/1.1
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbmR5VXNlciIsImlkIjoiNjNhMDMyOGZjMmMzMDBhNzYwNjM2Y2Q1IiwiaWF0IjoxNjcxNDQ1MDkwLCJleHAiOjE2NzE0NDg2OTB9.QWRAPV6GTPHVcngsVW-9K4LkqZ6M_Fm_FtUrisGk5yc
+
+{
+      "name": " testingtoken",
+      "number": "104-234345754"
+}
+
+###
+DELETE  http://localhost:8080/api/persons/63a03b8ca48d005949a89da1 HTTP/1.1
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbmR5VXNlciIsImlkIjoiNjNhMDMyOGZjMmMzMDBhNzYwNjM2Y2Q1IiwiaWF0IjoxNjcxNDQ1MDkwLCJleHAiOjE2NzE0NDg2OTB9.QWRAPV6GTPHVcngsVW-9K4LkqZ6M_Fm_FtUrisGk5yc
+
+
+

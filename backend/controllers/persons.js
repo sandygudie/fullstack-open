@@ -1,6 +1,7 @@
 const personsRouter = require("express").Router();
 const Person = require("../models/person");
 const User = require("../models/user");
+// const jwt = require("jsonwebtoken");
 
 personsRouter.get("/", async (request, response) => {
   const persons = await Person.find({})
@@ -15,10 +16,16 @@ personsRouter.get("/", async (request, response) => {
 personsRouter.post("/", async (request, response) => {
   const body = request.body;
 
-  const user = await User.findById(body.userId);
+  // const decodedToken = jwt.verify(request.token, process.env.SECRET);
+
+  // if (!decodedToken.id) {
+  //   return response.status(401).json({ error: "token missing or invalid" });
+  // }
+  const user = await User.findById(request.user);
   const person = new Person({
     name: body.name,
     number: body.number,
+    date: new Date(),
     user: user._id,
   });
 
@@ -31,6 +38,18 @@ personsRouter.post("/", async (request, response) => {
 });
 
 personsRouter.delete("/:id", async (request, response) => {
+  const person = await Person.findById(request.params.id);
+
+  const user = await User.findById(request.user);
+
+  if (person.user.toString() !== user.id.toString()) {
+    return response.status(401).json({ error: "unauthorize" });
+  }
+
+  user.phonebook = user.phonebook.filter(
+    (item) => item.id.toString() !== person.id.toString()
+  );
+  user.save();
   await Person.findByIdAndRemove(request.params.id);
   response.status(204).end();
 });
